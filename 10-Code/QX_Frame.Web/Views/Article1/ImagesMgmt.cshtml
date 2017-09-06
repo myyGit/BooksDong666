@@ -1,0 +1,134 @@
+﻿
+@{
+    ViewBag.Title = "ImagesMgmt";
+    Layout = "~/Views/Shared/_Layout_CommonReference.cshtml";
+}
+@using QX_Frame.Data.DTO;
+@{
+    BookViewModel bookViewModel = Model as BookViewModel;
+    string[] imgUris = bookViewModel.ImageUris.Split(',');
+    int imgCount = string.IsNullOrEmpty(bookViewModel.ImageUris) == true ? 0 : imgUris.Count();
+    int picIndex = 0;
+}
+<link href="~/lib/lightbox2/2.8.1/css/lightbox.css" rel="stylesheet" type="text/css">
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 图片管理 <span class="c-gray en">&gt;</span> 图片展示 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="page-container" id="app">
+    <form class="form form-horizontal" id="form-article-add">
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>古籍编号：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" value="" placeholder="" id="articleUID" name="articleUID" disabled v-model="ArticleUid">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>古籍标题：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" value="" placeholder="" id="articletitle" name="articletitle" disabled v-model="Title">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">其他标题：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" value="" placeholder="" id="articletitle2" name="articletitle2" disabled v-model="Title2">
+            </div>
+        </div>
+        <div class="cl pd-5 bg-1 bk-gray mt-20">
+            <!--<span class="l">
+                    <a href="javascript:;" onclick="edit()" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe6df;</i> 编辑</a>
+                    <a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
+                </span> -->
+            <span class="r">共有数据：<strong>@imgCount</strong> 条</span>
+        </div>
+        <div class="portfolio-content">
+            <ul class="cl portfolio-area">
+                @{
+                    foreach (var item in imgUris)
+                    {
+                        <li class="item" id="picItem-@picIndex">
+                            <div class="portfoliobox">
+                                <input class="checkbox" name="" type="checkbox" value="">
+                                <div class="picbox"><a href="@item" data-lightbox="gallery" data-title="-"><img src="@item"></a></div>
+                                <div class="textbox" style="text-align: center;"><a href="javascript:;" v-on:click="DeleteImage('@item','@picIndex')" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 删除</a> </div>
+                            </div>
+                        </li>
+                        picIndex++;
+                    }
+                }
+            </ul>
+        </div>
+    </form>
+</div>
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="~/lib/lightbox2/2.8.1/js/lightbox.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $(".portfolio-area li").Huihover();
+    });
+
+    var imgUris = '@bookViewModel.ImageUris';
+    var imgUrisArray;
+    if (imgUris != null && imgUris!='') {
+        imgUrisArray = imgUris.split(',');
+    } else {
+        imgUrisArray = new Array();
+    }
+
+    new Vue({
+        el: '#app',
+        data: {
+            "ArticleUid": "@bookViewModel.BookUid",
+            "Title": "@bookViewModel.Title",
+            "Title2": "@bookViewModel.Title2",
+            "Volume": "@bookViewModel.Volume",
+            "Dynasty": "@bookViewModel.Dynasty",
+            "CategoryId": "@bookViewModel.CategoryId",
+            "Functionary": "@bookViewModel.Functionary",
+            "Publisher": "@bookViewModel.Publisher",
+            "Version": "@bookViewModel.Version",
+            "FromBF49": "@bookViewModel.FromBF49",
+            "FromAF49": "@bookViewModel.FromAF49",
+            "ImageUris": "@bookViewModel.ImageUris",
+            "Notice": "@bookViewModel.Notice"
+        },
+        methods:
+        {
+            DeleteImage: function (imgUri,objId) {
+                var self = this;
+                if (imgUrisArray.indexOf(imgUri) > -1) {
+                    //imgUrisArray = removeValueFromArray(imgUrisArray, imgUri);//remove item from array
+                    imgUrisArray.removeByValue(imgUri); 
+                    //console.log(imgUrisArray);
+                 $.ajax({
+                        type: 'post',
+                        url: '/Article/EditImages/@bookViewModel.BookUid',
+                        async: true,//异步
+                        dataType: 'json',
+                        data:
+                        {
+                            "ImageUris": imgUrisArray.toString()
+                        },
+                        beforeSend: function () {
+                        },
+                        success: function (data) {
+                            if (data.isSuccess) {
+                                self.message = data.msg;
+                                layer.msg('修改成功!', { icon: 6, time: 1000 });
+                                $("#picItem-" + objId).remove();//remove item
+                            } else {
+                                console.log(data.msg);
+                            }
+                            self.message = data.msg;
+                        },
+                        error: function (data) {
+                            console.log(JSON.stringify(data));
+                        }
+                    });//end Ajax
+
+                    //阻止submit表单提交
+                    //ev.preventDefault();
+                }
+            }
+        }
+    });
+</script>

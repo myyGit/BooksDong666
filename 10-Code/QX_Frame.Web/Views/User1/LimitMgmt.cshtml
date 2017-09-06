@@ -1,0 +1,262 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout_CommonReference.cshtml";
+    ViewBag.Title = "权限修改";
+}
+@using QX_Frame.Data.DTO;
+@using QX_Frame.Data.Entities;
+@{
+    LimitViewModel limitViewModel = Model as LimitViewModel;
+    UserViewModel userViewModel = limitViewModel.UserViewModel;
+    List<TB_LimitCode> limitCodeList = limitViewModel.LimitCodeList;
+    List<TB_DisplayCode> displayCodeList = limitViewModel.DisplayCodeList;
+    string[] userlimitCodeList = userViewModel?.LimitCode?.Split(',');
+    string[] userDisplayCodeList = userViewModel?.DisplayCode?.Split(',');
+}
+
+<article class="page-container" id="app">
+    <div class="row">
+        <label for="operation_limit_table">功能操作权限:</label>
+        <table class="table table-border table-bordered table-hover table-bg" id="operation_limit_table">
+            <thead>
+                <tr class="text-c">
+                    <th>权限代码</th>
+                    <th>权限描述</th>
+                    <th>是否选择</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var item in limitCodeList)
+                    {
+                        <tr class="text-c">
+                            <td>@item.LimitCodeId</td>
+                            <td>@item.LimitDescription</td>
+                            @if (userlimitCodeList != null)
+                            {
+                                if (userlimitCodeList.Contains(item.LimitCodeId.ToString()))
+                                {
+                                    <td class="success"><span><i class="Hui-iconfont">&#xe6a7;</i></span></td>
+                                }
+                                else
+                                {
+                                    <td class="danger"><span><i class="Hui-iconfont">&#xe6a6;</i></span></td>
+                                }
+                            }
+                            else
+                            {
+                                <td class="danger"><span><i class="Hui-iconfont">&#xe6a6;</i></span></td>
+                            }
+
+                            <td>
+                                <input class="btn btn-success radius" type="button" value="添加" v-on:click="addLimit(event.currentTarget,'@item.LimitCodeId')">
+                                <input class="btn btn-danger radius" type="button" value="删除" v-on:click="removeLimit(event.currentTarget,'@item.LimitCodeId')">
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="row">
+        <label for="view_limit_table">界面显示权限:</label>
+        <table class="table table-border table-bordered table-hover table-bg" id="view_limit_table">
+            <thead>
+                <tr class="text-c">
+                    <th>权限代码</th>
+                    <th>权限描述</th>
+                    <th>是否选择</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var item in displayCodeList)
+                    {
+                        <tr class="text-c">
+                            <td>@item.DisplayCode</td>
+                            <td>@item.DisplayDescription</td>
+                            @if (userDisplayCodeList != null)
+                            {
+                                if (userDisplayCodeList.Contains(item.DisplayCode.ToString()))
+                                {
+                                    <td class="success"><span><i class="Hui-iconfont">&#xe6a7;</i></span></td>
+                                }
+                                else
+                                {
+                                    <td class="danger"><span><i class="Hui-iconfont">&#xe6a6;</i></span></td>
+                                }
+                            }
+                            else
+                            {
+                                <td class="danger"><span><i class="Hui-iconfont">&#xe6a6;</i></span></td>
+                            }
+                            <td>
+                                <input class="btn btn-success radius" type="button" value="添加" v-on:click="addDisplay(event.currentTarget,'@item.DisplayCode')">
+                                <input class="btn btn-danger radius" type="button" value="删除" v-on:click="removeDisplay(event.currentTarget,'@item.DisplayCode')">
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+    <form action="/" method="post" class="form form-horizontal" id="form-change-password">
+        <div class="row cl">
+            <label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>账户：</label>
+            <div class="formControls col-xs-10 col-sm-10">@userViewModel.Name</div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>操作权限：</label>
+            <div class="formControls col-xs-10 col-sm-10">
+                <input type="text" class="input-text" autocomplete="off" placeholder="" name="newpassword" id="newpassword" disabled="disabled" v-bind:value="limitCodes">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>界面权限：</label>
+            <div class="formControls col-xs-10 col-sm-10">
+                <input type="text" class="input-text" autocomplete="off" placeholder="" name="newpassword2" id="new-password2" disabled="disabled" v-bind:value="displayCodes">
+            </div>
+        </div>
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+                <input class="btn btn-primary radius" type="button" value="保 存" v-on:click="limit_save(this,'1')">
+                <span id="sp_result" style="color:red;font-size:medium">{{message}}</span>
+            </div>
+        </div>
+    </form>
+</article>
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="~/lib/My97DatePicker/4.8/WdatePicker.js"></script>
+<script type="text/javascript" src="~/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
+<script type="text/javascript" src="~/lib/jquery.validation/1.14.0/validate-methods.js"></script>
+<script type="text/javascript" src="~/lib/jquery.validation/1.14.0/messages_zh.js"></script>
+<script type="text/javascript">
+        new Vue({
+            el: '#app',
+            data: {
+                message: '',
+                limitCodes:'@userViewModel.LimitCode',
+                displayCodes:'@userViewModel.DisplayCode'
+            },
+            methods:
+            {
+                /*权限-保存*/
+                limit_save: function (obj, id) {
+                    var self = this;
+                    layer.confirm('确认要修改权限吗？', function (index) {
+                        $.ajax({
+                            type: 'post',
+                            url: '/User/LimitUpdate/@userViewModel.UserUid',
+                            async: true,//异步
+                            dataType: 'json',
+                            headers:
+                            {
+                            },
+                            data:
+                            {
+                                "limitCode": self.limitCodes,
+                                "displayCode": self.displayCodes
+                            },
+                            beforeSend: function () {
+                            },
+                            success: function (data) {
+                                if (data.isSuccess) {
+                                    layer.msg(data.msg, { icon: 6, time: 1000 });
+                                } else {
+                                    layer.msg(data.msg, { icon: 6, time: 1000 });
+                                }
+                                self.message = data.msg;
+                            },
+                            error: function (data) {
+                                console.log(JSON.stringify(data));
+                            }
+                        });//end Ajax
+                    });
+                },
+                addLimit: function (obj, id) {
+                    var array = this.limitCodes.split(',');
+                    if (array.indexOf(id) < 0) {
+                        var td_obj = $(obj).parents('tr').children('.danger');
+                        td_obj.removeClass('danger');
+                        td_obj.addClass('success');
+                        td_obj.html("<span><i class='Hui-iconfont'>&#xe6a7;</i></span>");
+                        if (this.limitCodes == null || this.limitCodes == '') {
+                            array = new Array(id);
+                        }
+                        else {
+                            array.push(id);
+                        }
+                    }
+                    this.limitCodes = array.toString();
+                },
+                removeLimit: function (obj, id) {
+                    var array = this.limitCodes.split(',');
+                    if (array.indexOf(id) > -1) {
+                        var td_obj = $(obj).parents('tr').children('.success');
+                        td_obj.removeClass('success');
+                        td_obj.addClass('danger');
+                        td_obj.html("<span><i class='Hui-iconfont'>&#xe6a6;</i></span>");
+                        array.removeByValue(id);
+                    }
+                    this.limitCodes = array.toString();
+                },
+                addDisplay: function (obj, id) {
+                    var array = this.displayCodes.split(',');
+                    if (array.indexOf(id) < 0) {
+                        var td_obj = $(obj).parents('tr').children('.danger');
+                        td_obj.removeClass('danger');
+                        td_obj.addClass('success');
+                        td_obj.html("<span><i class='Hui-iconfont'>&#xe6a7;</i></span>");
+                        if (this.displayCodes == null || this.displayCodes == '') {
+                            array = new Array(id);
+                        }
+                        else {
+                            array.push(id);
+                        }
+                    }
+                    this.displayCodes = array.toString();
+                },
+                removeDisplay: function (obj, id) {
+                    var array = this.displayCodes.split(',');
+                    if (array.indexOf(id) > -1) {
+                        var td_obj = $(obj).parents('tr').children('.success');
+                        td_obj.removeClass('success');
+                        td_obj.addClass('danger');
+                        td_obj.html("<span><i class='Hui-iconfont'>&#xe6a6;</i></span>");
+                        array.removeByValue(id);
+                    }
+                    this.displayCodes = array.toString();
+                }
+            }
+        })
+         $(function () {
+             $("#form-change-password").validate({
+                 rules: {
+                     newpassword: {
+                         required: true,
+                         minlength: 6,
+                         maxlength: 16
+                     },
+                     newpassword2: {
+                         required: true,
+                         minlength: 6,
+                         maxlength: 16,
+                         equalTo: "#newpassword"
+                     },
+                 },
+                 onkeyup: false,
+                 focusCleanup: true,
+                 success: "valid",
+                 submitHandler: function (form) {
+                     $(form).ajaxSubmit();
+                     var index = parent.layer.getFrameIndex(window.name);
+                     parent.$('.btn-refresh').click();
+                     parent.layer.close(index);
+                 }
+             });
+         });
+
+</script>
+<!--/请在上方写此页面业务相关的脚本-->
