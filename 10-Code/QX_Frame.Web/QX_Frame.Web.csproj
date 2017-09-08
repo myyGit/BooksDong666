@@ -87,6 +87,10 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Webdiyer.MvcPager, Version=3.0.2015.802, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\程序\N_Refresh\N_Refresh\bin\Webdiyer.MvcPager.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
     </Reference>
@@ -1230,6 +1234,11 @@
     <Content Include="New\fonts\icomoon\icomoon.ttf" />
     <Content Include="New\fonts\icomoon\icomoon.woff" />
     <Content Include="New\js\style.css.map" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\MvcPager.js" />
+    <Content Include="Scripts\MvcPager.min.js" />
+    <Content Include="Webdiyer.MvcPager.dll" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\common.js" />
@@ -1317,6 +1326,7 @@
     <Content Include="Views\Article\Read.cshtml" />
     <Content Include="Views\Article\Detail.cshtml" />
     <Content Include="Views\Article\MuchList.cshtml" />
+    <Content Include="Views\Article\_PartList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

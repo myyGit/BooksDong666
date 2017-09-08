@@ -1,7 +1,22 @@
 ﻿@{
-    Layout = "~/Views/Shared/_Layout_CommonReference.cshtml";
+    Layout = "";
     ViewBag.Title = "Read";
 }
+<link rel="stylesheet" type="text/css" href="~/H-ui/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="~/H-ui/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="~/lib/Hui-iconfont/1.0.8/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="~/H-ui/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="~/H-ui/h-ui.admin/css/style.css" />
+
+<script type="text/javascript" src="~/lib/jquery/1.9.1/jquery.min.js"></script>
+<script src="~/Scripts/vue.min.js"></script>
+<script src="~/Scripts/common.js"></script>
+<style>
+    body {
+        background: url(/New/images/geometry2.png) repeat;
+    }
+</style>
+
 @using QX_Frame.Data.DTO;
 @{
     BookViewModel bookViewModel = Model as BookViewModel;
@@ -20,7 +35,7 @@
     <table class="table">
         <tbody>
             <tr>
-                <td width="30%">@bookViewModel.Title</td>
+                <td width="30%"></td>
                 <td width="5%">
                     <a class="btn btn-primary radius" id="jump_front" href="javascript:picJump(-1);"><i class="Hui-iconfont">&#xe67d;</i></a>
                 </td>
@@ -30,7 +45,7 @@
                 <td width="5%">
                     <a class="btn btn-primary radius" id="img_smaller" href="javascript:imgToSize(-50);"><i class="Hui-iconfont">&#xe6a1;</i></a>
                 </td>
-                
+
                 <td width="5%">
                     <a class="btn btn-primary radius" id="jump_behind" href="javascript:picJump(1);"><i class="Hui-iconfont">&#xe63d;</i></a>
                 </td>
@@ -79,8 +94,16 @@
         var img = $("#Imgbox");
         var oWidth = img.width(); //取得图片的实际宽度
         var oHeight = img.height(); //取得图片的实际高度
-        img.width(oWidth + size);
-        img.height(oHeight + size / oWidth * oHeight);
+        if ((size < 0) && (oWidth <= 100 || oHeight <= 100)) {
+            if (size > 0){
+                img.width(oWidth + size);
+                img.height(oHeight + size / oWidth * oHeight);
+            }
+        } else {
+            img.width(oWidth + size);
+            img.height(oHeight + size / oWidth * oHeight);
+        }
+        
     }
 
     function rotateLeftOrRight(rotateValue) {

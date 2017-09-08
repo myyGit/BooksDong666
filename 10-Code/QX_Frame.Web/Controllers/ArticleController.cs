@@ -16,12 +16,14 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using Webdiyer.WebControls.Mvc;
 
 namespace QX_Frame.Web.Controllers
 {
     public class ArticleController : WebControllerBase
     {
-        public ActionResult List()
+        private readonly int pageSize = 2;
+        public ActionResult List(int pageIndex = 1)
         {
             int categoryId = Request["categoryId"].ToInt();
             string title = Request["title"];
@@ -70,11 +72,15 @@ namespace QX_Frame.Web.Controllers
                         bookViewList.Add(bookViewModel);
                     }
                 }
-
+                PagedList<BookViewModel> p_list = bookViewList.ToPagedList(pageIndex, pageSize);
+                if (Request.IsAjaxRequest())
+                {
+                    return PartialView("_PartList", p_list);
+                }
                 return View(bookViewList);
             }
         }
-        public ActionResult MuchList()
+        public ActionResult MuchList(int pageIndex=1)
         {
             int categoryId = Request["categoryId1"].ToInt();
             string title = Request["title1"];
@@ -131,8 +137,12 @@ namespace QX_Frame.Web.Controllers
                         bookViewList.Add(bookViewModel);
                     }
                 }
-
-                return View(bookViewList);
+                PagedList<BookViewModel> p_list = bookViewList.ToPagedList(pageIndex, pageSize);
+                if (Request.IsAjaxRequest())
+                {
+                    return PartialView("_PartList", p_list);
+                }
+                return View(p_list);
             }
         }
         // Detail
