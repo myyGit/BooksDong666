@@ -1,52 +1,76 @@
+/*********************************************************
+ * CopyRight: QIXIAO CODE BUILDER. 
+ * Version:4.2.0
+ * Author:qixiao(柒小)
+ * Create:2017-09-07 14:50:47
+ * Update:2017-09-07 14:50:47
+ * E-mail: dong@qixiao.me | wd8622088@foxmail.com 
+ * GitHub: https://github.com/dong666 
+ * Personal web site: http://qixiao.me 
+ * Technical WebSit: http://www.cnblogs.com/qixiaoyizhan/ 
+ * Description:
+ * Thx , Best Regards ~
+ *********************************************************/
+
+using System;
+using QX_Frame.App.Base;
+using QX_Frame.Bantina.Bankinate;
+
 namespace QX_Frame.Data.Entities
 {
-    using QX_Frame.App.Base;
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
+	/// <summary>
+	/// public class TB_Book
+	/// </summary>
+	[Serializable]
+	[Table(TableName = "TB_Book")]
+	public class TB_Book: Entity<DB_QX_Frame_MS_CMS, TB_Book>
+	{
+		/// <summary>
+		/// construction method
+		/// </summary>
+		public TB_Book(){}
 
-    public partial class TB_Book:Entity<DB_QX_Frame_MS_CMS, TB_Book>
-    {
-        [Key]
-        public Guid BookUid { get; set; } = Guid.NewGuid();
+		// PK（identity）  
+		[Key]
+		public Guid BookUid { get;set; }
+		// 
+		[Column]
+		public String Title { get;set; }
+		// 
+		[Column]
+		public String Title2 { get;set; }
+		// 
+		[Column]
+		public Int32 Volume { get;set; }
+		// 
+		[Column]
+		public String Dynasty { get;set; }
+		// 
+		[Column]
+		public Int32 CategoryId { get;set; }
 
-        [Required]
-        [StringLength(50)]
-        public string Title { get; set; }
-
-        [StringLength(50)]
-        public string Title2 { get; set; }
-
-        public int Volume { get; set; }
-
-        [StringLength(10)]
-        public string Dynasty { get; set; }
-
-        public int CategoryId { get; set; }
-
-        [StringLength(20)]
-        public string Functionary { get; set; }
-
-        [StringLength(20)]
-        public string Publisher { get; set; }
-
-        [StringLength(20)]
-        public string Version { get; set; }
-
-        [StringLength(50)]
-        public string FromBF49 { get; set; }
-
-        [StringLength(50)]
-        public string FromAF49 { get; set; }
-
-        [StringLength(2000)]
-        public string ImageUris { get; set; } = "";
-
-        [StringLength(200)]
-        public string Notice { get; set; }
-
-        public virtual TB_Category TB_Category { get; set; }
-    }
+        [ForeignTable(ForeignKeyFieldName = "CategoryId")]
+        public TB_Category TB_Category { get; set; }
+		// 
+		[Column]
+		public String Functionary { get;set; }
+		// 
+		[Column]
+		public String Publisher { get;set; }
+		// 
+		[Column]
+		public String Version { get;set; }
+		// 
+		[Column]
+		public String FromBF49 { get;set; }
+		// 
+		[Column]
+		public String FromAF49 { get;set; }
+		// 
+		[Column]
+		public String ImageUris { get;set; }
+		// 
+		[Column]
+		public String Notice { get;set; }
+	}
 }

@@ -42,3 +42,7 @@ D:\task\古籍\前台\10-Code\QX_Frame.ConsoleApp\obj\Debug\QX_Frame.ConsoleApp.
 D:\task\古籍\前台\10-Code\QX_Frame.ConsoleApp\obj\Debug\QX_Frame.ConsoleApp.csproj.CoreCompileInputs.cache
 D:\task\古籍\前台\10-Code\QX_Frame.ConsoleApp\obj\Debug\QX_Frame.ConsoleApp.exe
 D:\task\古籍\前台\10-Code\QX_Frame.ConsoleApp\obj\Debug\QX_Frame.ConsoleApp.pdb
+B:\OutSourcingService\AncientBooksMgmt_Front\10-Code\QX_Frame.ConsoleApp\obj\Debug\QX_Frame.ConsoleApp.csprojResolveAssemblyReference.cache
+B:\OutSourcingService\AncientBooksMgmt_Front\10-Code\QX_Frame.ConsoleApp\obj\Debug\QX_Frame.ConsoleApp.csproj.CoreCompileInputs.cache
+B:\OutSourcingService\AncientBooksMgmt_Front\10-Code\QX_Frame.ConsoleApp\obj\Debug\QX_Frame.ConsoleApp.exe
+B:\OutSourcingService\AncientBooksMgmt_Front\10-Code\QX_Frame.ConsoleApp\obj\Debug\QX_Frame.ConsoleApp.pdb

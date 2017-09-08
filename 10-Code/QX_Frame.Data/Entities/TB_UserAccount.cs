@@ -1,29 +1,49 @@
+/*********************************************************
+ * CopyRight: QIXIAO CODE BUILDER. 
+ * Version:4.2.0
+ * Author:qixiao(柒小)
+ * Create:2017-09-07 14:51:54
+ * Update:2017-09-07 14:51:54
+ * E-mail: dong@qixiao.me | wd8622088@foxmail.com 
+ * GitHub: https://github.com/dong666 
+ * Personal web site: http://qixiao.me 
+ * Technical WebSit: http://www.cnblogs.com/qixiaoyizhan/ 
+ * Description:
+ * Thx , Best Regards ~
+ *********************************************************/
+
+using System;
+using QX_Frame.App.Base;
+using QX_Frame.Bantina.Bankinate;
+
 namespace QX_Frame.Data.Entities
 {
-    using QX_Frame.App.Base;
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
+	/// <summary>
+	/// public class TB_UserAccount
+	/// </summary>
+	[Serializable]
+	[Table(TableName = "TB_UserAccount")]
+	public class TB_UserAccount: Entity<DB_QX_Frame_MS_User, TB_UserAccount>
+	{
+		/// <summary>
+		/// construction method
+		/// </summary>
+		public TB_UserAccount(){}
 
-    public partial class TB_UserAccount : Entity<DB_QX_Frame_MS_User, TB_UserAccount>
-    {
-        [Key]
-        public Guid UserUid { get; set; }
-
-        [Required]
-        [StringLength(20)]
-        public string LoginId { get; set; }
-
-        [Required]
-        [StringLength(50)]
-        public string Password { get; set; }
-
-        [StringLength(100)]
-        public string Email { get; set; }
-
-        [StringLength(50)]
-        public string Tel { get; set; }
-    }
+		// PK（identity）  User UID
+		[Key]
+		public Guid UserUid { get;set; }
+		// 登录名
+		[Column]
+		public String LoginId { get;set; }
+		// 用户密码 MD5方式加密
+		[Column]
+		public String Password { get;set; }
+		// 邮箱
+		[Column]
+		public String Email { get;set; }
+		// 电话号码
+		[Column]
+		public String Tel { get;set; }
+	}
 }

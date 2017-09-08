@@ -13,7 +13,7 @@ namespace QX_Frame.ConsoleApp.Config
         public ClassRegisters()
         {
             //register region --
-            //AppBase.Register(c => new QX_Frame.Helper_DG.Service.RabbitMQ_Service_DG());
+            //AppBase.Register(c => new QX_Frame.Bantina.Service.RabbitMQ_Service_DG());
             AppBase.Register(c => new BloodTypeNameService());
             AppBase.Register(c => new BookService());
             AppBase.Register(c => new CategoryService());

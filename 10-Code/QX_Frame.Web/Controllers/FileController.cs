@@ -1,5 +1,5 @@
 ﻿using QX_Frame.App.Web;
-using QX_Frame.Helper_DG;
+using QX_Frame.Bantina;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
