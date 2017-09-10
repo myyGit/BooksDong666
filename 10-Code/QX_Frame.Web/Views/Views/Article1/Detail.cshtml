@@ -1,0 +1,96 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout_CommonReference.cshtml";
+    ViewBag.Title = "古籍列表";
+}
+@using QX_Frame.Data.DTO;
+@{
+    BookViewModel bookViewModel =   Model as BookViewModel;
+    string[] imgUris = bookViewModel.ImageUris.Split(',');
+}
+<div class="cl pd-20" style=" background-color:#5bacb6">
+    <!-- <img class="avatar size-XL l" src="static/h-ui/images/ucnter/avatar-default.jpg"> -->
+    <dl style="margin-left:80px; color:#fff">
+        <dt>
+            <span class="f-18">古籍标题</span>
+            <!-- <span class="pl-10 f-12">余额：40</span> -->
+        </dt>
+        <dd class="pt-10 f-12" style="margin-left:0"></dd>
+    </dl>
+</div>
+<div class="pd-20">
+    <table class="table">
+        <tbody>
+            <tr>
+                <th class="text-r" width="100">古籍ID：</th>
+                <td>@bookViewModel.BookUid</td>
+            </tr>
+            <tr>
+                <th class="text-r">其他标题：</th>
+                <td>@bookViewModel.Title</td>
+            </tr>
+            <tr>
+                <th class="text-r">古籍类型：</th>
+                <td>@bookViewModel.CategoryName</td>
+            </tr>
+            <tr>
+                <th class="text-r">卷数：</th>
+                <td>@bookViewModel.Volume</td>
+            </tr>
+            <tr>
+                <th class="text-r">朝代：</th>
+                <td>@bookViewModel.Dynasty</td>
+            </tr>
+            <tr>
+                <th class="text-r">责任者：</th>
+                <td>@bookViewModel.Functionary</td>
+            </tr>
+            <tr>
+                <th class="text-r">版本：</th>
+                <td>@bookViewModel.Version</td>
+            </tr>
+            <tr>
+                <th class="text-r">出版社：</th>
+                <td>@bookViewModel.Publisher</td>
+            </tr>
+            <tr>
+                <th class="text-r">出处（94年前）：</th>
+                <td>@bookViewModel.FromBF49</td>
+            </tr>
+            <tr>
+                <th class="text-r">出处（94年后）：</th>
+                <td>@bookViewModel.FromAF49
+                </td>
+            </tr>
+            <tr>
+                <th class="text-r">备注：</th>
+                <td>@bookViewModel.Notice</td>
+            </tr>
+        <th class="text-r">古籍封面</th>
+        <td>
+            <a href="javascript:;" onClick="picture_edit('图库编辑','/Article/Edit2','10001')"><img width="210" class="picture-thumb" src="@imgUris.FirstOrDefault()"></a>
+        </td>
+        </tr>
+        <!-- <tr>
+            <th class="text-r">古籍图库</th>
+            <td class="text-l"><a class="maincolor" href="javascript:;" onClick="picture_edit('图库编辑','picture-show.html','10001')">现代简约 白色 餐厅</a></td>
+            <td class="text-c">标签</td>
+        </tr> -->
+        <!-- <tr>
+            <th class="text-r">积分：</th>
+            <td>330</td>
+        </tr> -->
+        </tbody>
+    </table>
+</div>
+
+<script type="text/javascript">
+    /*图片-编辑*/
+    function picture_edit(title, url, id) {
+        var index = layer.open({
+            type: 2,
+            title: title,
+            content: url
+        });
+        layer.full(index);
+    }
+</script>

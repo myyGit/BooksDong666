@@ -38,22 +38,6 @@
         </tr>
     </thead>
     <tbody>
-        <tr class="text-c">
-            <td class="text-l">
-                <a style="cursor:pointer" class="text-primary" href="@Url.Action("Detail","Article",new { id=new Guid()})" target="_blank" title="查看">12312312</a>
-            </td>
-            <td>别名 </td>
-            <td>阿达 </td>
-            <td>阿达 </td>
-            <td>唉顿时 </td>
-            <td>水电费 </td>
-            <td>2 </td>
-            <td> 阿斯顿发生导出 </td>
-            <td class="f-14 td-manage">
-                <a style="text-decoration:none" href="/Article/Read/123123" target="_blank" title="阅读"><i class="Hui-iconfont">&#xe720;</i></a>
-                <a style="text-decoration:none" href="/Article/DownLoadImages/12312?title=123123" title="下载"><i class="Hui-iconfont">&#xe641;</i></a>
-            </td>
-        </tr>
         @{
             if (bookList == null || bookList.Count <= 0)
             {
@@ -131,7 +115,7 @@
             }
         }
         function Submit() {
-            $("#form").submit();
+            $("#searchForm").submit();
         }
         /*古籍-阅读*/
         function article_show(title, url, w, h) {

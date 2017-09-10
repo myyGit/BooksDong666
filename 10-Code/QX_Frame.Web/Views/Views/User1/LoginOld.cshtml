@@ -1,0 +1,137 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="lib/html5shiv.js"></script>
+    <script type="text/javascript" src="lib/respond.min.js"></script>
+    <![endif]-->
+    <link href="~/H-ui/h-ui/css/H-ui.min.css" rel="stylesheet" />
+    <link href="~/H-ui/h-ui.admin/css/H-ui.login.css" rel="stylesheet" />
+    <link href="~/H-ui/h-ui.admin/css/style.css" rel="stylesheet" />
+    <link href="~/lib/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet" />
+    <!--[if IE 6]>
+    <script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+    <script>DD_belatedPNG.fix('*');</script>
+    <![endif]-->
+    <title>后台登录 - QX人力资源管理系统 1.0</title>
+    <meta name="keywords" content="后台登录 - QX人力资源管理系统 1.0">
+    <meta name="description" content="QX人力资源管理系统 1.0">
+</head>
+<body>
+    <input type="hidden" id="TenantId" name="TenantId" value="" />
+    <div class="header"></div>
+    <div class="loginWraper">
+        <div id="loginform" class="loginBox">
+            <form class="form form-horizontal" action="/" method="post">
+                <div class="row cl">
+                    <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60d;</i></label>
+                    <div class="formControls col-xs-8">
+                        <input id="account" name="account" type="text" placeholder="账户" class="input-text size-L">
+                    </div>
+                </div>
+                <div class="row cl">
+                    <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60e;</i></label>
+                    <div class="formControls col-xs-8">
+                        <input id="password" name="password" type="password" placeholder="密码" class="input-text size-L">
+                    </div>
+                </div>
+                <div class="row cl">
+                    <div class="formControls col-xs-8 col-xs-offset-3">
+                        <input id="validateCode" name="validateCode" class="input-text size-L" type="text" placeholder="验证码" onblur="if(this.value==''){this.value='验证码:'}" onclick="if(this.value=='验证码:'){this.value='';}" value="验证码:" style="width:150px;">
+                        <img id="img_validateCode" src="/File/ValidateCodeImage" style="width:100px;height:40px;"> <a id="kanbuq" href="javascript:reLoadValidateCode()">看不清，换一张</a>
+                    </div>
+                </div>
+                <div class="row cl">
+                    <div class="formControls col-xs-8 col-xs-offset-3">
+                        <label for="online">
+                            <input type="checkbox" name="online" id="online" value="0">
+                            使我保持登录状态
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Home/Index">返回主页</a>
+                        </label>
+                    </div>
+                </div>
+                <div class="row cl">
+                    <div class="formControls col-xs-8 col-xs-offset-3">
+                        <input name="" type="button" class="btn btn-success radius size-L" value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;" onclick="Login()">
+                        <input name="" type="reset" class="btn btn-default radius size-L" value="&nbsp;取&nbsp;&nbsp;&nbsp;&nbsp;消&nbsp;">
+                        <span id="sp_result" style="color:red;font-size:medium"></span>
+                    </div>
+                </div>
+                <div class="row cl">
+                    <div class="formControls col-xs-8 col-xs-offset-3">
+                        
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="footer">Copyright QX人力资源管理系统 1.0</div>
+    <script src="~/Scripts/jquery-3.2.0.min.js"></script>
+    <script src="~/H-ui/h-ui/js/H-ui.min.js"></script>
+
+    <script>
+        function reLoadValidateCode() {
+            $("#img_validateCode").attr('src', '/File/ValidateCodeImage' + '?t=' + Math.random()); //显示图片
+        }
+        function Login()
+        {
+            if ($("#online").attr('checked')) {
+                $("#online").val(1);
+            } else {
+                $("#online").val(0);
+            }
+            if ($("#validateCode").val() == "验证码:" || $("#validateCode").val()=="") {
+                $("#sp_result").html("验证码不能为空！");
+            } else {
+                $.ajax({
+                    type: 'post',
+                    url: '/User/LoginDeal',
+                    async: true,//异步
+                    dataType: 'json',
+                    headers:
+                    {
+                    },
+                    data:
+                    {
+                        "account": $("#account").val(),
+                        "password": $("#password").val(),
+                        "validateCode": $("#validateCode").val(),
+                        "online": $("#online").val(),
+                    },
+                    beforeSend: function () {
+
+                    },
+                    success: function (data) {
+                        if (data.isSuccess) {
+                            $("#sp_result").html(data.msg);
+                            setTimeout(function () {
+                                window.location = "/Home/Index";
+                            }, 500);
+                        } else {
+                            $("#sp_result").html(data.msg);
+                            reLoadValidateCode();
+                            $("#validateCode").val("");
+                        }
+                    },
+                    error: function (data) {
+                        console.log(JSON.stringify(data));
+                    }
+                });//end Ajax
+            }
+            
+
+        }
+    </script>
+</body>
+</html>

@@ -47,12 +47,13 @@
                     <option value="5">其他名称</option>
                 </select>
                 <input type="text" class="form-control" name="title" style="width: 70%;">
-                <button type="submit" class="input-group-addon "><i class="Hui-iconfont">&#xe665;</i></button>
+                <a class="input-group-addon " onclick="Submit()"><i class="Hui-iconfont">&#xe665;</i></a>
+            </div>
+            <div class="col-sm-3 search" style="line-height:34px;">
+                <a href="@Url.Action("MuchList", "Article")" style="color:indianred">多条件搜索</a>
             </div>
         }
-        <div class="col-sm-3 search" style="line-height:34px;">
-            <a href="@Url.Action("MuchList", "Article")" style="color:indianred">多条件搜索</a>
-        </div>
+        
         <div id="list">
             @{
                 Html.RenderPartial("_PartList", bookList);

@@ -1,0 +1,97 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout_CommonReference.cshtml";
+    ViewBag.Title = "用户详情";
+}
+@using QX_Frame.Data.DTO;
+@{
+    UserViewModel userViewModel = Model as UserViewModel;
+}
+<div class="cl pd-20" style=" background-color:#5bacb6">
+    <img class="avatar size-XL l" src="~/H-ui/h-ui/images/ucnter/noavatar_small.gif">
+    <dl style="margin-left:80px; color:#fff">
+        <dt>
+            <span class="f-18">@userViewModel.Name</span>
+            <!-- <span class="pl-10 f-12">余额：40</span> -->
+        </dt>
+        <dd class="pt-10 f-12" style="margin-left:0"></dd>
+    </dl>
+</div>
+<div class="pd-20">
+    <table class="table">
+        <tbody>
+            <tr>
+                <th class="text-r" width="80">员工ID：</th>
+                <td>@userViewModel.UserUid</td>
+            </tr>
+            <tr>
+                <th class="text-r">登录账号：</th>
+                <td>@userViewModel.LoginId</td>
+            </tr>
+            <tr>
+                <th class="text-r">姓名：</th>
+                <td>@userViewModel.Name</td>
+            </tr>
+            <tr>
+                <th class="text-r">状态：</th>
+                <td>正常</td>
+            </tr>
+            <tr>
+                <th class="text-r">权限信息：</th>
+                <td>@userViewModel.LimitCode</td>
+            </tr>
+            <!-- <tr>
+                <th class="text-r">积分：</th>
+                <td>330</td>
+            </tr> -->
+        </tbody>
+    </table>
+</div>
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="~/lib/My97DatePicker/4.8/WdatePicker.js"></script>
+<script type="text/javascript" src="~/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
+<script type="text/javascript" src="~/lib/jquery.validation/1.14.0/validate-methods.js"></script>
+<script type="text/javascript" src="~/lib/jquery.validation/1.14.0/messages_zh.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('.skin-minimal input').iCheck({
+            checkboxClass: 'icheckbox-blue',
+            radioClass: 'iradio-blue',
+            increaseArea: '20%'
+        });
+
+        $("#form-member-add").validate({
+            rules: {
+                username: {
+                    required: true,
+                    minlength: 2,
+                    maxlength: 16
+                },
+                sex: {
+                    required: true,
+                },
+                mobile: {
+                    required: true,
+                    isMobile: true,
+                },
+                email: {
+                    required: true,
+                    email: true,
+                },
+                uploadfile: {
+                    required: true,
+                },
+
+            },
+            onkeyup: false,
+            focusCleanup: true,
+            success: "valid",
+            submitHandler: function (form) {
+                //$(form).ajaxSubmit();
+                var index = parent.layer.getFrameIndex(window.name);
+                //parent.$('.btn-refresh').click();
+                parent.layer.close(index);
+            }
+        });
+    });
+</script>
+<!--/请在上方写此页面业务相关的脚本-->

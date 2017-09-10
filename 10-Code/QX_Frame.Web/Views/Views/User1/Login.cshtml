@@ -1,0 +1,129 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="keywords" content="古籍管理系统">
+    <meta name="description" content="古籍管理系统">
+    <title>Login</title>
+    <link href="~/css/login.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script>
+			window.onload=function(){
+                 changeDivHeight();
+            }
+            //当浏览器窗口大小改变时，设置显示内容的高度
+            window.onresize=function(){
+                 changeDivHeight();
+            }
+            function changeDivHeight(){
+                var h = document.documentElement.clientHeight;//获取页面可见高度
+                document.getElementById("grad").style.height=h+"px";
+}
+    </script>
+    <style>
+        html body {
+            background: -webkit-linear-gradient(left top, white, firebrick); /*Safari 5.1 - 6.0 */
+            background: -o-linear-gradient(bottom right, white, firebrick); /* Opera 11.1 - 12.0 */
+            background: -moz-linear-gradient(bottom right, white, firebrick); /* Firefox 3.6 - 15 */
+            background: linear-gradient(to bottom right, white, firebrick); /* 标准的语法（必须放在最后）*/
+        }
+    </style>
+</head>
+<body id="grad">
+    <h1></h1>
+    <div class="container w3layouts agileits">
+        <div class="login w3layouts agileits" style="margin: 0 auto;">
+            <h2>古籍管理系统登录</h2>
+            <form action="/" method="post">
+                <input type="text" id="account" Name="account" placeholder="用户名" required="">
+                <input type="password" id="password" name="password" placeholder="密码" required="">
+                <input id="validateCode" name="validateCode" class="input-text size-L" type="text" placeholder="验证码" onblur="if(this.value==''){this.value='验证码:'}" onclick="if(this.value=='验证码:'){this.value='';}" value="验证码:" style="width:150px;">
+                <img id="img_validateCode" src="/File/ValidateCodeImage" style="width:100px;height:40px;"> <a id="kanbuq" href="javascript:reLoadValidateCode()">看不清，换一张</a>
+            </form>
+            <ul class="tick w3layouts agileits">
+                <li>
+                    <input type="checkbox" id="online" name="online" value="0">
+                    <label for="brand1"><span></span>记住我</label>
+                </li>
+            </ul>
+            <div class="send-button w3layouts agileits">
+                <form>
+                    <input type="button" onclick="Login()" value="登 录">
+                    <span id="sp_result" style="color:red;font-size:medium"></span>
+                </form>
+            </div>
+            <!--<a href="#">记住密码?</a>-->
+            <div class="social-icons w3layouts agileits">
+                <a href="List.html" style="font-size: 12px;cursor: pointer;">- 还没有账号?快去注册吧 -</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+
+    </div>
+    <script src="~/Scripts/jquery-3.2.0.min.js"></script>
+    <script src="~/H-ui/h-ui/js/H-ui.min.js"></script>
+
+    <script>
+        function reLoadValidateCode() {
+            $("#img_validateCode").attr('src', '/File/ValidateCodeImage' + '?t=' + Math.random()); //显示图片
+        }
+        function Login() {
+            if ($("#online").attr('checked')) {
+                $("#online").val(1);
+            } else {
+                $("#online").val(0);
+            }
+            if ($("#validateCode").val() == "验证码:" || $("#validateCode").val() == "") {
+                $("#sp_result").html("验证码不能为空！");
+            } else {
+                $.ajax({
+                    type: 'post',
+                    url: '/User/LoginDeal',
+                    async: true,//异步
+                    dataType: 'json',
+                    headers:
+                    {
+                    },
+                    data:
+                    {
+                        "account": $("#account").val(),
+                        "password": $("#password").val(),
+                        "validateCode": $("#validateCode").val(),
+                        "online": $("#online").val(),
+                    },
+                    beforeSend: function () {
+
+                    },
+                    success: function (data) {
+                        if (data.isSuccess) {
+                            $("#sp_result").html(data.msg);
+                            setTimeout(function () {
+                                window.location = "/Home/Index";
+                            }, 500);
+                        } else {
+                            $("#sp_result").html(data.msg);
+                            reLoadValidateCode();
+                            $("#validateCode").val("");
+                        }
+                    },
+                    error: function (data) {
+                        console.log(JSON.stringify(data));
+                    }
+                });//end Ajax
+            }
+        }
+    </script>
+
+</body>
+</html>

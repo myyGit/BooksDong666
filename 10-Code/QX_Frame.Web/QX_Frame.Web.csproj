@@ -68,6 +68,10 @@
     <Reference Include="QX_Frame.Bantina">
       <HintPath>..\QX_Frame.Reference\QX_Frame.Bantina\QX_Frame.Bantina.dll</HintPath>
     </Reference>
+    <Reference Include="QX_Frame.Helper_DG, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\QX_Frame.Helper_DG.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -1327,6 +1331,39 @@
     <Content Include="Views\Article\Detail.cshtml" />
     <Content Include="Views\Article\MuchList.cshtml" />
     <Content Include="Views\Article\_PartList.cshtml" />
+    <Content Include="Views\Views\Article1\Add.cshtml" />
+    <Content Include="Views\Views\Article1\Delete.cshtml" />
+    <Content Include="Views\Views\Article1\Detail.cshtml" />
+    <Content Include="Views\Views\Article1\Edit.cshtml" />
+    <Content Include="Views\Views\Article1\ImagesMgmt.cshtml" />
+    <Content Include="Views\Views\Article1\List.cshtml" />
+    <Content Include="Views\Views\Article1\MultList.cshtml" />
+    <Content Include="Views\Views\Article1\UploadImages.cshtml" />
+    <Content Include="Views\Views\Article\Detail.cshtml" />
+    <Content Include="Views\Views\Article\List.cshtml" />
+    <Content Include="Views\Views\Article\MuchList.cshtml" />
+    <Content Include="Views\Views\Article\MuchListTable.cshtml" />
+    <Content Include="Views\Views\Article\Read.cshtml" />
+    <Content Include="Views\Views\Article\_PartList.cshtml" />
+    <Content Include="Views\Views\Article\_PartMuchTableList.cshtml" />
+    <Content Include="Views\Views\Home\About.cshtml" />
+    <Content Include="Views\Views\Home\Contact.cshtml" />
+    <Content Include="Views\Views\Home\Index.cshtml" />
+    <Content Include="Views\Views\Shared\Error.cshtml" />
+    <Content Include="Views\Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Views\Shared\_Layout_CommonReference.cshtml" />
+    <Content Include="Views\Views\User1\Add.cshtml" />
+    <Content Include="Views\Views\User1\Delete.cshtml" />
+    <Content Include="Views\Views\User1\Detail.cshtml" />
+    <Content Include="Views\Views\User1\Edit.cshtml" />
+    <Content Include="Views\Views\User1\LimitMgmt.cshtml" />
+    <Content Include="Views\Views\User1\List.cshtml" />
+    <Content Include="Views\Views\User1\Login.cshtml" />
+    <Content Include="Views\Views\User1\LoginOld.cshtml" />
+    <Content Include="Views\Views\User1\Register.cshtml" />
+    <Content Include="Views\Views\User\Login.cshtml" />
+    <Content Include="Views\Views\web.config" />
+    <Content Include="Views\Views\_ViewStart.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
