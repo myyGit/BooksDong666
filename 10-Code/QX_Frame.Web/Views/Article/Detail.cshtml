@@ -1,7 +1,16 @@
 ﻿@{
-    Layout = "~/Views/Shared/_Layout_CommonReference.cshtml";
+    Layout = "";
     ViewBag.Title = "古籍列表";
 }
+<link rel="stylesheet" type="text/css" href="~/H-ui/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="~/H-ui/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="~/lib/Hui-iconfont/1.0.8/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="~/H-ui/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="~/H-ui/h-ui.admin/css/style.css" />
+
+<script type="text/javascript" src="~/lib/jquery/1.9.1/jquery.min.js"></script>
+<script src="~/Scripts/vue.min.js"></script>
+<script src="~/Scripts/common.js"></script>
 @using QX_Frame.Data.DTO;
 @{
     BookViewModel bookViewModel = Model as BookViewModel;
@@ -9,6 +18,12 @@
     int picIndex = 0;
 }
 <link href="~/lib/lightbox2/2.8.1/css/lightbox.css" rel="stylesheet" type="text/css">
+<style>
+    body {
+        background: url(/New/images/geometry2.png) repeat;
+    }
+</style>
+
 <div class="cl pd-20" style=" background-color:#5bacb6">
     <!-- <img class="avatar size-XL l" src="static/h-ui/images/ucnter/avatar-default.jpg"> -->
     <dl style="margin-left:80px; color:#fff">
@@ -62,25 +77,25 @@
                 <th class="text-r">出处（94年后）：</th>
                 <td>
                     @bookViewModel.FromAF49
-            </td>
-        </tr>
-        <tr>
-            <th class="text-r">备注：</th>
-            <td>@bookViewModel.Notice</td>
-        </tr>
-        <tr>
-            <th class="text-r">古籍封面</th>
-            <td>
-                <a href="javascript:;"><img width="210" class="picture-thumb" src="@imgUris.FirstOrDefault()"></a>
-            </td>
-        </tr>
-        <tr>
-            <th class="text-r"></th>
-            <td>
-                <a class="btn btn-primary radius" data-title="古籍阅读" data-href="#" onclick="article_add('古籍阅读','/Article/Read/@bookViewModel.BookUid')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 开始阅读</a>
-            </td>
-    </tbody>
-</table>
+                </td>
+            </tr>
+            <tr>
+                <th class="text-r">备注：</th>
+                <td>@bookViewModel.Notice</td>
+            </tr>
+            <tr>
+                <th class="text-r">古籍封面</th>
+                <td>
+                    <a href="javascript:;"><img width="210" class="picture-thumb" src="@imgUris.FirstOrDefault()"></a>
+                </td>
+            </tr>
+            <tr>
+                <th class="text-r"></th>
+                <td>
+                    <a class="btn btn-primary radius" data-title="古籍阅读" data-href="#" onclick="article_add('古籍阅读','/Article/Read/@bookViewModel.BookUid')" href="/Article/Read/@bookViewModel.BookUid"><i class="Hui-iconfont">&#xe600;</i> 开始阅读</a>
+                </td>
+        </tbody>
+    </table>
 </div>
 
 <script type="text/javascript" src="~/lib/lightbox2/2.8.1/js/lightbox.min.js"></script>

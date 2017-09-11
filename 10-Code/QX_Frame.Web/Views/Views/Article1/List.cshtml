@@ -1,0 +1,171 @@
+﻿@{
+    Layout = null;
+    ViewBag.Title = "古籍列表";
+}
+@using QX_Frame.Data.DTO;
+@{
+    List<BookViewModel> bookList = Model as List<BookViewModel>;
+    int count = bookList.Count;
+}
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="lib/html5shiv.js"></script>
+    <script type="text/javascript" src="lib/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="~/H-ui/h-ui/css/H-ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/H-ui/h-ui.admin/css/H-ui.admin.css" />
+    <link rel="stylesheet" type="text/css" href="~/lib/Hui-iconfont/1.0.8/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="~/H-ui/h-ui.admin/skin/default/skin.css" id="skin" />
+    <link rel="stylesheet" type="text/css" href="~/H-ui/h-ui.admin/css/style.css" />
+
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/vue.min.js"></script>
+    <script src="~/Scripts/common.js"></script>
+    <!--[if IE 6]>
+    <script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+    <script>DD_belatedPNG.fix('*');</script>
+    <![endif]-->
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 古籍管理 <span class="c-gray en">&gt;</span> 古籍列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+    <div class="page-container">
+        @{ 
+            string keyword = ViewData["KeyWord"] == null ? null : ViewData["KeyWord"].ToString();
+            string jian = ViewData["KeyJian"] == null ? "" : ViewData["KeyJian"].ToString();
+            string fan = ViewData["KeyFan"] == null ? "" : ViewData["KeyFan"].ToString();
+        }
+        <div class="text-c">
+            <form action="/Article/List">
+                <input type="text" name="title" id="title" placeholder=" 古籍名称" value="@keyword" style="width:250px" class="input-text">
+                <button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜古籍</button>
+                &nbsp;&nbsp;
+                <a data-href="/Article/MultList" data-title="多条件搜索" href="/Article/MultList" style="text-decoration:underline">多条件搜索</a>
+            </form>
+        </div>
+        <div class="mt-20">
+            <table class="table table-border table-bordered table-bg table-hover table-sort table-responsive">
+                <thead>
+                    <tr class="text-c">
+                        <th>题名</th>
+                        <th width="80">其他题名</th>
+                        <th width="80">卷数</th>
+                        <th width="120">朝代</th>
+                        <th width="75">责任者</th>
+                        <th width="60">分类</th>
+                        <th width="60">版本</th>
+                        <th width="60">出版社</th>
+                        <th width="120">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var item in bookList.OrderByDescending(p=>p.Title).ThenByDescending(p=>p.Title2).ToList())
+                        {
+                            #region 关键字标红
+                            item.Title = (string.IsNullOrEmpty(item.Title) || string.IsNullOrEmpty(jian))?item.Title : item.Title.ToString().Replace(jian, "<span style=\"color:red;\">" + jian + "</span>");
+                            item.Title = (string.IsNullOrEmpty(item.Title) || string.IsNullOrEmpty(fan)) ? item.Title : item.Title.ToString().Replace(fan, "<span style=\"color:red;\">" + fan + "</span>");
+                            item.Title2 = (string.IsNullOrEmpty(item.Title2) || string.IsNullOrEmpty(jian)) ? item.Title2 : item.Title2.ToString().Replace(jian, "<span style=\"color:red;\">" + jian + "</span>");
+                            item.Title2 = (string.IsNullOrEmpty(item.Title2) || string.IsNullOrEmpty(fan)) ? item.Title2 : item.Title2.ToString().Replace(fan, "<span style=\"color:red;\">" + fan + "</span>");
+                            item.Publisher = (string.IsNullOrEmpty(item.Publisher) || string.IsNullOrEmpty(jian)) ? item.Version : item.Publisher.ToString().Replace(jian, "<span style=\"color:red;\">" + jian + "</span>");
+                            item.Publisher = (string.IsNullOrEmpty(item.Publisher) || string.IsNullOrEmpty(fan)) ? item.Version : item.Publisher.ToString().Replace(fan, "<span style=\"color:red;\">" + fan + "</span>");
+                            item.Version = (string.IsNullOrEmpty(item.Version) || string.IsNullOrEmpty(jian)) ? item.Version : item.Version.ToString().Replace(jian, "<span style=\"color:red;\">" + jian + "</span>");
+                            item.Version = (string.IsNullOrEmpty(item.Version) || string.IsNullOrEmpty(fan)) ? item.Version : item.Version.ToString().Replace(fan, "<span style=\"color:red;\">" + fan + "</span>");
+                            item.CategoryName = (string.IsNullOrEmpty(item.CategoryName) || string.IsNullOrEmpty(jian)) ? item.CategoryName : item.CategoryName.ToString().Replace(jian, "<span style=\"color:red;\">" + jian + "</span>");
+                            item.CategoryName = (string.IsNullOrEmpty(item.CategoryName) || string.IsNullOrEmpty(fan)) ? item.CategoryName : item.CategoryName.ToString().Replace(fan, "<span style=\"color:red;\">" + fan + "</span>");
+                            item.Functionary = (string.IsNullOrEmpty(item.Functionary) || string.IsNullOrEmpty(jian)) ? item.Functionary : item.Functionary.ToString().Replace(jian, "<span style=\"color:red;\">" + jian + "</span>");
+                            item.Functionary = (string.IsNullOrEmpty(item.Functionary) || string.IsNullOrEmpty(fan)) ? item.Functionary : item.Functionary.ToString().Replace(fan, "<span style=\"color:red;\">" + fan + "</span>");
+                            item.Dynasty = (string.IsNullOrEmpty(item.Dynasty) || string.IsNullOrEmpty(jian)) ? item.Dynasty : item.Dynasty.ToString().Replace(jian, "<span style=\"color:red;\">" + jian + "</span>");
+                            item.Dynasty = (string.IsNullOrEmpty(item.Dynasty) || string.IsNullOrEmpty(fan)) ? item.Dynasty : item.Dynasty.ToString().Replace(fan, "<span style=\"color:red;\">" + fan + "</span>");
+                            #endregion
+                            <tr class="text-c">
+                                <td class="text-l">
+                                    <u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','/Article/Detail/@item.BookUid','10001')" title="查看">
+                                        @Html.Raw(item.Title.ToString())
+                                    </u>
+                                </td>
+                                <td>@Html.Raw(item.Title2.ToString())</td>
+                                <td>@item.Volume</td>
+                                <td>@Html.Raw(item.Dynasty.ToString())</td>
+                                <td>@Html.Raw(item.Functionary.ToString())</td>
+                                <td>@Html.Raw(item.CategoryName.ToString())</td>
+                                <td>@Html.Raw(item.Version.ToString())</td>
+                                <td>@Html.Raw(item.Publisher.ToString())</td>
+                                <td class="f-14 td-manage">
+                                    <a style="text-decoration:none" onClick="article_add('古籍详情','/Article/Detail/@item.BookUid')" href="javascript:;" title="阅读"><i class="Hui-iconfont">&#xe720;</i></a>
+                                    <a style="text-decoration:none" href="/Article/DownLoadImages/@item.BookUid?title=@item.Title" title="下载"><i class="Hui-iconfont">&#xe641;</i></a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--请在下方写此页面业务相关的脚本-->
+    <script type="text/javascript" src="~/lib/My97DatePicker/4.8/WdatePicker.js"></script>
+    <script type="text/javascript" src="~/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/lib/laypage/1.2/laypage.js"></script>
+    <script src="~/Scripts/ajaxfileupload.js"></script>
+    <!--请在下方写此页面业务相关的脚本-->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#fileInput").bind("change", function ajaxFileUpload() {
+                $.ajaxFileUpload({
+                    type: 'post',
+                    url: '/Article/ImportArticle',
+                    secureuri: false,
+                    fileElementId: 'fileInput',
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.isSuccess) {
+                            layer.msg(data.msg, { icon: 1, time: 1000 });
+                            location.replace(location.href);//refresh
+                        }
+                        console.log(data.msg);
+                    },
+                    error: function (data) {
+                        console.log(JSON.stringify(data));
+                    }
+                });
+            });
+        });
+
+
+        $('.table-sort').dataTable({
+           // "aaSorting": [[0, "desc"]],//默认第几个排序
+            "bStateSave": true,//状态保存
+            "pading": false,
+            "aoColumnDefs": [
+                //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
+                { "orderable": false, "aTargets": [1,2,3, 4, 5, 6, 7, 8] }// 不参与排序的列
+            ]
+        });
+
+        /*古籍-阅读*/
+        function article_show(title, url, w, h) {
+            var index = layer.open({
+                type: 2,
+                title: title,
+                content: url
+            });
+            layer.full(index);
+        }
+
+    </script>
+    <!--_footer 作为公共模版分离出去-->
+
+    @*<script type="text/javascript" src="~/lib/jquery/1.9.1/jquery.min.js"></script>*@
+    <script type="text/javascript" src="~/lib/layer/2.4/layer.js"></script>
+    <script type="text/javascript" src="~/H-ui/h-ui/js/H-ui.min.js"></script>
+    <script type="text/javascript" src="~/H-ui//h-ui.admin/js/H-ui.admin.js"></script>
+    <!--/_footer 作为公共模版分离出去-->
+</body>
+</html>
