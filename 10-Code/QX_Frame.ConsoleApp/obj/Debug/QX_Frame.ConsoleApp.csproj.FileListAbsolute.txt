@@ -79,3 +79,15 @@ B:\OutSourcingService\AncientBooksMgmt_Front\10-Code\QX_Frame.ConsoleApp\obj\Deb
 B:\OutSourcingService\AncientBooksMgmt_Front\10-Code\QX_Frame.ConsoleApp\obj\Debug\QX_Frame.ConsoleApp.csproj.CoreCompileInputs.cache
 B:\OutSourcingService\AncientBooksMgmt_Front\10-Code\QX_Frame.ConsoleApp\obj\Debug\QX_Frame.ConsoleApp.exe
 B:\OutSourcingService\AncientBooksMgmt_Front\10-Code\QX_Frame.ConsoleApp\obj\Debug\QX_Frame.ConsoleApp.pdb
+B:\OutSourcingService\AncientBooksMgmt_Front\10-Code\QX_Frame.ConsoleApp\bin\Debug\ServiceStack.Interfaces.dll
+B:\OutSourcingService\AncientBooksMgmt_Front\10-Code\QX_Frame.ConsoleApp\bin\Debug\ServiceStack.Redis.dll
+B:\OutSourcingService\AncientBooksMgmt_Front\10-Code\QX_Frame.ConsoleApp\bin\Debug\RabbitMQ.Client.dll
+B:\OutSourcingService\AncientBooksMgmt_Front\10-Code\QX_Frame.ConsoleApp\bin\Debug\ServiceStack.Text.dll
+B:\OutSourcingService\AncientBooksMgmt_Front\10-Code\QX_Frame.ConsoleApp\bin\Debug\ServiceStack.Common.dll
+B:\OutSourcingService\AncientBooksMgmt_Front\10-Code\QX_Frame.ConsoleApp\bin\Debug\Microsoft.Diagnostics.Tracing.EventSource.dll
+B:\OutSourcingService\AncientBooksMgmt_Front\10-Code\QX_Frame.ConsoleApp\bin\Debug\ServiceStack.Interfaces.xml
+B:\OutSourcingService\AncientBooksMgmt_Front\10-Code\QX_Frame.ConsoleApp\bin\Debug\ServiceStack.Redis.xml
+B:\OutSourcingService\AncientBooksMgmt_Front\10-Code\QX_Frame.ConsoleApp\bin\Debug\RabbitMQ.Client.xml
+B:\OutSourcingService\AncientBooksMgmt_Front\10-Code\QX_Frame.ConsoleApp\bin\Debug\ServiceStack.Text.xml
+B:\OutSourcingService\AncientBooksMgmt_Front\10-Code\QX_Frame.ConsoleApp\bin\Debug\ServiceStack.Common.xml
+B:\OutSourcingService\AncientBooksMgmt_Front\10-Code\QX_Frame.ConsoleApp\bin\Debug\Microsoft.Diagnostics.Tracing.EventSource.xml
