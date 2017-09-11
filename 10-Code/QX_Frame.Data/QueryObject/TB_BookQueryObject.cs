@@ -87,11 +87,6 @@ namespace QX_Frame.Data.QueryObject
         {
             Expression<Func<TB_Book, bool>> func = t => true;
 
-            if (!string.IsNullOrEmpty(""))
-            {
-                func = func.And(t => true);
-            }
-
             if (!string.IsNullOrEmpty(this.Title))
             {
                 if (this.CategoryId == 0)
@@ -100,9 +95,9 @@ namespace QX_Frame.Data.QueryObject
                                    || tt.Title2.Contains(this.NameJian) || tt.Title2.Contains(this.NameFan)
                                    || tt.Publisher.Contains(this.NameJian) || tt.Publisher.Contains(this.NameFan)
                                    || tt.Dynasty.Contains(this.NameJian) || tt.Dynasty.Contains(this.NameFan)
-                                   || tt.Functionary.Contains(this.NameJian) || tt.Functionary.Contains(this.NameFan)
-                                   || (tt.TB_Category != null && tt.TB_Category.CategoryName.Contains(this.NameJian))
-                                   || (tt.TB_Category != null && tt.TB_Category.CategoryName.Contains(this.NameFan)));
+                                   || tt.Functionary.Contains(this.NameJian) || tt.Functionary.Contains(this.NameFan));
+                                   //|| (tt.TB_Category != null && tt.TB_Category.CategoryName.Contains(this.NameJian))
+                                   //|| (tt.TB_Category != null && tt.TB_Category.CategoryName.Contains(this.NameFan)));
                 }
                 if (this.CategoryId == 1)
                 {
@@ -133,9 +128,9 @@ namespace QX_Frame.Data.QueryObject
                                    || tt.Title2.Contains(this.NameJian2) || tt.Title2.Contains(this.NameFan2)
                                    || tt.Publisher.Contains(this.NameJian2) || tt.Publisher.Contains(this.NameFan2)
                                    || tt.Dynasty.Contains(this.NameJian2) || tt.Dynasty.Contains(this.NameFan2)
-                                   || tt.Functionary.Contains(this.NameJian2) || tt.Functionary.Contains(this.NameFan2)
-                                   || (tt.TB_Category != null && tt.TB_Category.CategoryName.Contains(this.NameJian2))
-                                   || (tt.TB_Category != null && tt.TB_Category.CategoryName.Contains(this.NameFan2)));
+                                   || tt.Functionary.Contains(this.NameJian2) || tt.Functionary.Contains(this.NameFan2));
+                                   //|| (tt.TB_Category != null && tt.TB_Category.CategoryName.Contains(this.NameJian2))
+                                   //|| (tt.TB_Category != null && tt.TB_Category.CategoryName.Contains(this.NameFan2)));
                 }
                 if (this.CategoryId2 == 1)
                 {

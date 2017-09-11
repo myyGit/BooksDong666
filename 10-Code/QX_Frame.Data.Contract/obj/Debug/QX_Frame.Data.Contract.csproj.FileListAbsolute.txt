@@ -114,3 +114,17 @@ E:\task\古籍\qiantai\OK\10-Code\QX_Frame.Data.Contract\bin\Debug\LinqKit.xml
 E:\task\古籍\qiantai\OK\10-Code\QX_Frame.Data.Contract\obj\Debug\QX_Frame.Data.Contract.csprojResolveAssemblyReference.cache
 E:\task\古籍\qiantai\OK\10-Code\QX_Frame.Data.Contract\obj\Debug\QX_Frame.Data.Contract.dll
 E:\task\古籍\qiantai\OK\10-Code\QX_Frame.Data.Contract\obj\Debug\QX_Frame.Data.Contract.pdb
+B:\OutSourcingService\AncientBooksMgmt_Front\10-Code\QX_Frame.Data.Contract\bin\Debug\ServiceStack.Interfaces.dll
+B:\OutSourcingService\AncientBooksMgmt_Front\10-Code\QX_Frame.Data.Contract\bin\Debug\EntityFramework.dll
+B:\OutSourcingService\AncientBooksMgmt_Front\10-Code\QX_Frame.Data.Contract\bin\Debug\ServiceStack.Redis.dll
+B:\OutSourcingService\AncientBooksMgmt_Front\10-Code\QX_Frame.Data.Contract\bin\Debug\RabbitMQ.Client.dll
+B:\OutSourcingService\AncientBooksMgmt_Front\10-Code\QX_Frame.Data.Contract\bin\Debug\ServiceStack.Text.dll
+B:\OutSourcingService\AncientBooksMgmt_Front\10-Code\QX_Frame.Data.Contract\bin\Debug\ServiceStack.Common.dll
+B:\OutSourcingService\AncientBooksMgmt_Front\10-Code\QX_Frame.Data.Contract\bin\Debug\Microsoft.Diagnostics.Tracing.EventSource.dll
+B:\OutSourcingService\AncientBooksMgmt_Front\10-Code\QX_Frame.Data.Contract\bin\Debug\ServiceStack.Interfaces.xml
+B:\OutSourcingService\AncientBooksMgmt_Front\10-Code\QX_Frame.Data.Contract\bin\Debug\EntityFramework.xml
+B:\OutSourcingService\AncientBooksMgmt_Front\10-Code\QX_Frame.Data.Contract\bin\Debug\ServiceStack.Redis.xml
+B:\OutSourcingService\AncientBooksMgmt_Front\10-Code\QX_Frame.Data.Contract\bin\Debug\RabbitMQ.Client.xml
+B:\OutSourcingService\AncientBooksMgmt_Front\10-Code\QX_Frame.Data.Contract\bin\Debug\ServiceStack.Text.xml
+B:\OutSourcingService\AncientBooksMgmt_Front\10-Code\QX_Frame.Data.Contract\bin\Debug\ServiceStack.Common.xml
+B:\OutSourcingService\AncientBooksMgmt_Front\10-Code\QX_Frame.Data.Contract\bin\Debug\Microsoft.Diagnostics.Tracing.EventSource.xml
