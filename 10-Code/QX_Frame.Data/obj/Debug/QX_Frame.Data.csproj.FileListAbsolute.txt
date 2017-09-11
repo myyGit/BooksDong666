@@ -122,3 +122,17 @@ B:\OutSourcingService\AncientBooksMgmt_Front\10-Code\QX_Frame.Data\bin\Debug\Ser
 B:\OutSourcingService\AncientBooksMgmt_Front\10-Code\QX_Frame.Data\bin\Debug\ServiceStack.Common.xml
 B:\OutSourcingService\AncientBooksMgmt_Front\10-Code\QX_Frame.Data\bin\Debug\Microsoft.Diagnostics.Tracing.EventSource.xml
 B:\OutSourcingService\AncientBooksMgmt_Front\10-Code\QX_Frame.Data\obj\Debug\QX_Frame.Data.csprojResolveAssemblyReference.cache
+E:\task\古籍\qiantai\OK\10-Code\QX_Frame.Data\bin\Debug\ServiceStack.Interfaces.dll
+E:\task\古籍\qiantai\OK\10-Code\QX_Frame.Data\bin\Debug\EntityFramework.dll
+E:\task\古籍\qiantai\OK\10-Code\QX_Frame.Data\bin\Debug\ServiceStack.Redis.dll
+E:\task\古籍\qiantai\OK\10-Code\QX_Frame.Data\bin\Debug\RabbitMQ.Client.dll
+E:\task\古籍\qiantai\OK\10-Code\QX_Frame.Data\bin\Debug\ServiceStack.Text.dll
+E:\task\古籍\qiantai\OK\10-Code\QX_Frame.Data\bin\Debug\ServiceStack.Common.dll
+E:\task\古籍\qiantai\OK\10-Code\QX_Frame.Data\bin\Debug\Microsoft.Diagnostics.Tracing.EventSource.dll
+E:\task\古籍\qiantai\OK\10-Code\QX_Frame.Data\bin\Debug\ServiceStack.Interfaces.xml
+E:\task\古籍\qiantai\OK\10-Code\QX_Frame.Data\bin\Debug\EntityFramework.xml
+E:\task\古籍\qiantai\OK\10-Code\QX_Frame.Data\bin\Debug\ServiceStack.Redis.xml
+E:\task\古籍\qiantai\OK\10-Code\QX_Frame.Data\bin\Debug\RabbitMQ.Client.xml
+E:\task\古籍\qiantai\OK\10-Code\QX_Frame.Data\bin\Debug\ServiceStack.Text.xml
+E:\task\古籍\qiantai\OK\10-Code\QX_Frame.Data\bin\Debug\ServiceStack.Common.xml
+E:\task\古籍\qiantai\OK\10-Code\QX_Frame.Data\bin\Debug\Microsoft.Diagnostics.Tracing.EventSource.xml

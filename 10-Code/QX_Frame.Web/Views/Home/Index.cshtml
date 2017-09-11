@@ -1,0 +1,55 @@
+﻿@{
+    Layout = null;
+}
+@using System.Web.Optimization;
+@using QX_Frame.Bantina;
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link href="~/New/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/H-ui/h-ui/css/H-ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/H-ui/h-ui.admin/css/H-ui.admin.css" />
+    <link rel="stylesheet" type="text/css" href="~/lib/Hui-iconfont/1.0.8/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="~/H-ui/h-ui.admin/skin/default/skin.css" id="skin" />
+    <link rel="stylesheet" type="text/css" href="~/H-ui/h-ui.admin/css/style.css" />
+
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/MvcPager.min.js"></script>
+    <script src="~/Scripts/vue.min.js"></script>
+    <script src="~/Scripts/common.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <style>
+        body {
+            background: url(/New/images/geometry2.png) repeat;
+        }
+    </style>
+    <title>古籍管理系统</title>
+    <meta name="keywords" content="模板">
+    <meta name="description" content="CMS后台系统。">
+</head>
+
+<body>
+    <div style="width: 70%; margin: 0 auto;padding-top: 30px;">
+        @using (Ajax.BeginForm("List", "Article", new RouteValueDictionary { { "id", "" } },
+                                    new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "list", InsertionMode = InsertionMode.Replace }, new RouteValueDictionary { { "id", "searchForm" } }))
+        {
+            <div class="input-group" style="width:70%;display:inline-table">
+               
+                <input type="text" class="form-control" name="title" style="width: 90%;">
+                <button type="submit" class="input-group-addon " style="width:5%;height:34px"><i class="Hui-iconfont">&#xe665;</i></button>
+            </div>
+            <div class="search" style="line-height:34px;display: inline-block;">
+                <a href="@Url.Action("MuchList", "Article")" style="color:indianred">多条件搜索</a>
+            </div>
+         }
+    </div>
+</body>
+</html>

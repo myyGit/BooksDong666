@@ -3,9 +3,39 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
+    <title>古籍系统</title>
+    <style>
+        .siteTop{
+            color:white;
+        }
+        .siteTop:hover{
+            color:aliceblue;
+        }
+    </style>
 </head>
 <body>
+    @{ 
+         
+    }
+    <div class="top">
+        <div class="top-right" style="text-align-last:right;padding-right:10%;background-color:indianred;height:35px;line-height:35px;">
+            <label>
+                @if (Session["loginId"] == null)
+                {
+                    <a class="siteTop" href="~/User/Login">登录</a>
+                    <label style="color:white">&nbsp;&nbsp;|&nbsp;&nbsp; </label>
+                    <a class="siteTop" href="@Url.Action("Register","User")">注册</a>
+                }
+                else
+                {
+                    <label style="color:white">欢迎您 <a href="@Url.Action("Index","Home")" style="color:white"> @Session["loginId"] </a></label>
+                    <label style="color:white">&nbsp;&nbsp;|&nbsp;&nbsp; </label>
+                    <a class="siteTop" href="@Url.Action("LoginOut","User")">【退出】</a>
+                }
+
+            </label>
+        </div>
+    </div>
     <div>
         @RenderBody()
     </div>

@@ -68,6 +68,10 @@
     <Reference Include="QX_Frame.Bantina">
       <HintPath>..\QX_Frame.Reference\QX_Frame.Bantina\QX_Frame.Bantina.dll</HintPath>
     </Reference>
+    <Reference Include="QX_Frame.Helper_DG, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\QX_Frame.Helper_DG.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -1260,7 +1264,7 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Views\Shared1\Error.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -1293,16 +1297,16 @@
     <Content Include="Config\qx_frame.config.json" />
     <Content Include="Config\qx_frame.internationalization.json" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared1\_Layout.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Home1\About.cshtml" />
-    <Content Include="Views\Home1\Contact.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\User1\LoginOld.cshtml" />
     <Content Include="Views\User1\Register.cshtml" />
-    <Content Include="Views\Home1\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\User1\List.cshtml" />
     <Content Include="Views\User1\Add.cshtml" />
     <Content Include="Views\User1\Delete.cshtml" />
@@ -1314,7 +1318,7 @@
     <Content Include="Views\Article1\Edit.cshtml" />
     <Content Include="Views\Article1\Detail.cshtml" />
     <Content Include="Views\Article1\Delete.cshtml" />
-    <Content Include="Views\Shared1\_Layout_CommonReference.cshtml" />
+    <Content Include="Views\Shared\_Layout_CommonReference.cshtml" />
     <Content Include="Views\Article1\UploadImages.cshtml" />
     <Content Include="Views\Article1\ImagesMgmt.cshtml" />
     <Content Include="Views\Article1\Read.cshtml" />

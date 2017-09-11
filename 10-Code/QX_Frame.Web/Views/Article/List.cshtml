@@ -1,6 +1,6 @@
 ﻿
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/site.cshtml";
 }
 @using QX_Frame.Data.DTO;
 @using Webdiyer.WebControls.Mvc;
@@ -23,9 +23,11 @@
 
     <script src="~/Scripts/jquery-1.10.2.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
     <script src="~/Scripts/MvcPager.min.js"></script>
     <script src="~/Scripts/vue.min.js"></script>
     <script src="~/Scripts/common.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <style>
         body {
             background: url(/New/images/geometry2.png) repeat;
@@ -35,32 +37,32 @@
 <body>
     <div style="width: 70%; margin: 0 auto;padding-top: 30px;">
         @using (Ajax.BeginForm("List", "Article", new RouteValueDictionary { { "id", "" } },
-                    new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "list", InsertionMode = InsertionMode.Replace }, new RouteValueDictionary { { "id", "searchForm" } }))
+                                new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "list", InsertionMode = InsertionMode.Replace }, new RouteValueDictionary { { "id", "searchForm" } }))
         {
-            <div class="input-group">
-                <select class="form-control float-lt" style="width: 30%;" name="categoryId">
-                    <option value="0">全部</option>
-                    <option value="1">书名</option>
-                    <option value="2">作者</option>
-                    <option value="3">出版者</option>
-                    <option value="4">朝代</option>
-                    <option value="5">其他名称</option>
-                </select>
-                <input type="text" class="form-control" name="title" style="width: 70%;">
-                <a class="input-group-addon " onclick="Submit()"><i class="Hui-iconfont">&#xe665;</i></a>
+
+            <div class="input-group" style="width:70%;display:inline-table">
+                @*<select class="form-control float-lt" style="width: 30%;" name="categoryId">
+                        <option value="0">全部</option>
+                        <option value="1">书名</option>
+                        <option value="2">责任者</option>
+                        <option value="3">出版社</option>
+                        <option value="4">朝代</option>
+                        <option value="5">其他名称</option>
+                    </select>*@
+                <input type="text" class="form-control" name="title" style="width: 90%;">
+                <button type="submit" class="input-group-addon " style="width:5%;height:34px"><i class="Hui-iconfont">&#xe665;</i></button>
             </div>
-            <div class="col-sm-3 search" style="line-height:34px;">
+            <div class="search" style="line-height:34px;display: inline-block;">
                 <a href="@Url.Action("MuchList", "Article")" style="color:indianred">多条件搜索</a>
             </div>
         }
-        
         <div id="list">
             @{
                 Html.RenderPartial("_PartList", bookList);
             }
         </div>
-        
+
     </div>
-    
+
 </body>
 </html>
