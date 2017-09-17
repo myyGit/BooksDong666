@@ -1,9 +1,16 @@
 ﻿@using Webdiyer.WebControls.Mvc;
 @using QX_Frame.Data.DTO;
+@using System.Configuration;
 @{
     PagedList<BookViewModel> bookList = Model as PagedList<BookViewModel>;
-    int count = bookList == null ? 0: bookList.Count;
+    int count = bookList == null ? 0 : bookList.Count;
     var user = Session["uid"] == null ? 0 : 1;
+}
+@{
+    string keyword = ViewData["KeyWord"] == null ? null : ViewData["KeyWord"].ToString();
+    string jian = ViewData["KeyJian"] == null ? "" : ViewData["KeyJian"].ToString();
+    string fan = ViewData["KeyFan"] == null ? "" : ViewData["KeyFan"].ToString();
+    int id = ViewData["CategoryId"] == null ? 0 : Convert.ToInt32(ViewData["CategoryId"]);
 }
 <table class="table table-bordered table-striped" style="margin-top: 10px;display: inline-table;">
     <thead>
@@ -30,7 +37,7 @@
                 版本
             </td>
             <td>
-                出版者
+                出版社
             </td>
             <td>
                 操作
@@ -49,21 +56,66 @@
             {
                 foreach (var item in bookList)
                 {
+                    #region 关键字标红
+                    switch (id)
+                    {
+                        case 0: //全部
+                            item.Title = (string.IsNullOrEmpty(item.Title) || string.IsNullOrEmpty(jian)) ? item.Title : item.Title.ToString().Replace(jian, "<span style=\"color:red;\">" + jian + "</span>");
+                            item.Title = (string.IsNullOrEmpty(item.Title) || string.IsNullOrEmpty(fan)) ? item.Title : item.Title.ToString().Replace(fan, "<span style=\"color:red;\">" + fan + "</span>");
+                            item.Title2 = (string.IsNullOrEmpty(item.Title2) || string.IsNullOrEmpty(jian)) ? item.Title2 : item.Title2.ToString().Replace(jian, "<span style=\"color:red;\">" + jian + "</span>");
+                            item.Title2 = (string.IsNullOrEmpty(item.Title2) || string.IsNullOrEmpty(fan)) ? item.Title2 : item.Title2.ToString().Replace(fan, "<span style=\"color:red;\">" + fan + "</span>");
+                            item.Publisher = (string.IsNullOrEmpty(item.Publisher) || string.IsNullOrEmpty(jian)) ? item.Version : item.Publisher.ToString().Replace(jian, "<span style=\"color:red;\">" + jian + "</span>");
+                            item.Publisher = (string.IsNullOrEmpty(item.Publisher) || string.IsNullOrEmpty(fan)) ? item.Version : item.Publisher.ToString().Replace(fan, "<span style=\"color:red;\">" + fan + "</span>");
+                            item.Version = (string.IsNullOrEmpty(item.Version) || string.IsNullOrEmpty(jian)) ? item.Version : item.Version.ToString().Replace(jian, "<span style=\"color:red;\">" + jian + "</span>");
+                            item.Version = (string.IsNullOrEmpty(item.Version) || string.IsNullOrEmpty(fan)) ? item.Version : item.Version.ToString().Replace(fan, "<span style=\"color:red;\">" + fan + "</span>");
+                            item.CategoryName = (string.IsNullOrEmpty(item.CategoryName) || string.IsNullOrEmpty(jian)) ? item.CategoryName : item.CategoryName.ToString().Replace(jian, "<span style=\"color:red;\">" + jian + "</span>");
+                            item.CategoryName = (string.IsNullOrEmpty(item.CategoryName) || string.IsNullOrEmpty(fan)) ? item.CategoryName : item.CategoryName.ToString().Replace(fan, "<span style=\"color:red;\">" + fan + "</span>");
+                            item.Functionary = (string.IsNullOrEmpty(item.Functionary) || string.IsNullOrEmpty(jian)) ? item.Functionary : item.Functionary.ToString().Replace(jian, "<span style=\"color:red;\">" + jian + "</span>");
+                            item.Functionary = (string.IsNullOrEmpty(item.Functionary) || string.IsNullOrEmpty(fan)) ? item.Functionary : item.Functionary.ToString().Replace(fan, "<span style=\"color:red;\">" + fan + "</span>");
+                            item.Dynasty = (string.IsNullOrEmpty(item.Dynasty) || string.IsNullOrEmpty(jian)) ? item.Dynasty : item.Dynasty.ToString().Replace(jian, "<span style=\"color:red;\">" + jian + "</span>");
+                            item.Dynasty = (string.IsNullOrEmpty(item.Dynasty) || string.IsNullOrEmpty(fan)) ? item.Dynasty : item.Dynasty.ToString().Replace(fan, "<span style=\"color:red;\">" + fan + "</span>");
+                            break;
+                        case 1: //书名
+                            item.Title = (string.IsNullOrEmpty(item.Title) || string.IsNullOrEmpty(jian)) ? item.Title : item.Title.ToString().Replace(jian, "<span style=\"color:red;\">" + jian + "</span>");
+                            item.Title = (string.IsNullOrEmpty(item.Title) || string.IsNullOrEmpty(fan)) ? item.Title : item.Title.ToString().Replace(fan, "<span style=\"color:red;\">" + fan + "</span>");
+                            break;
+                        case 2: //责任者
+                            item.Functionary = (string.IsNullOrEmpty(item.Functionary) || string.IsNullOrEmpty(jian)) ? item.Functionary : item.Functionary.ToString().Replace(jian, "<span style=\"color:red;\">" + jian + "</span>");
+                            item.Functionary = (string.IsNullOrEmpty(item.Functionary) || string.IsNullOrEmpty(fan)) ? item.Functionary : item.Functionary.ToString().Replace(fan, "<span style=\"color:red;\">" + fan + "</span>");
+                            break;
+                        case 3: //出版社
+                            item.Publisher = (string.IsNullOrEmpty(item.Publisher) || string.IsNullOrEmpty(jian)) ? item.Version : item.Publisher.ToString().Replace(jian, "<span style=\"color:red;\">" + jian + "</span>");
+                            item.Publisher = (string.IsNullOrEmpty(item.Publisher) || string.IsNullOrEmpty(fan)) ? item.Version : item.Publisher.ToString().Replace(fan, "<span style=\"color:red;\">" + fan + "</span>");
+                            break;
+                        case 4: //朝代
+                            item.Dynasty = (string.IsNullOrEmpty(item.Dynasty) || string.IsNullOrEmpty(jian)) ? item.Dynasty : item.Dynasty.ToString().Replace(jian, "<span style=\"color:red;\">" + jian + "</span>");
+                            item.Dynasty = (string.IsNullOrEmpty(item.Dynasty) || string.IsNullOrEmpty(fan)) ? item.Dynasty : item.Dynasty.ToString().Replace(fan, "<span style=\"color:red;\">" + fan + "</span>");
+                            break;
+                        case 5: //其他名称
+                            item.Title2 = (string.IsNullOrEmpty(item.Title2) || string.IsNullOrEmpty(jian)) ? item.Title2 : item.Title2.ToString().Replace(jian, "<span style=\"color:red;\">" + jian + "</span>");
+                            item.Title2 = (string.IsNullOrEmpty(item.Title2) || string.IsNullOrEmpty(fan)) ? item.Title2 : item.Title2.ToString().Replace(fan, "<span style=\"color:red;\">" + fan + "</span>");
+                            break;
+                        default:
+                            break;
+                    }
+
+                    #endregion
                     <tr class="text-c">
                         <td class="text-l">
-                            @*<a style="cursor:pointer" class="text-primary" href="@(user == 0 ? Url.Action("Login","User") : Url.Action("Detail","Article",new { id=item.BookUid}))" target="_blank" title="查看">@item.Title</a>*@
-                            <a style="cursor:pointer" class="text-primary" href="@Url.Action("Detail","Article",new { id=item.BookUid})" target="_blank" title="查看">@item.Title</a>
+                            <a style="cursor:pointer" class="text-primary look" href="javascript:void(0)" target="_blank" name="@item.BookUid" title="查看">
+                                @Html.Raw(item.Title.ToString())
+                            </a>
                         </td>
-                        <td>@item.Title2</td>
+                        <td>@Html.Raw(item.Title2.ToString())</td>
                         <td>@item.Volume</td>
-                        <td>@item.Dynasty</td>
-                        <td>@item.Functionary</td>
-                        <td>@item.CategoryName</td>
-                        <td>@item.Version</td>
-                        <td>@item.Publisher</td>
+                        <td>@Html.Raw(item.Dynasty.ToString())</td>
+                        <td>@Html.Raw(item.Functionary.ToString())</td>
+                        <td>@Html.Raw(item.CategoryName.ToString())</td>
+                        <td>@Html.Raw(item.Version.ToString())</td>
+                        <td>@Html.Raw(item.Publisher.ToString())</td>
                         <td class="f-14 td-manage">
-                            <a style="text-decoration:none" href="/Article/Read/@item.BookUid" target="_blank" title="阅读"><i class="Hui-iconfont">&#xe720;</i></a>
-                            <a style="text-decoration:none" onclick="Dowm(@item.BookUid,@item.Title)" href="/Article/DownLoadImages/@item.BookUid?title=@item.Title" title="下载" class=""><i class="Hui-iconfont">&#xe641;</i></a>
+                            <a style="text-decoration:none" class="look" href="javascript:void(0)" name="@item.BookUid" target="_blank" title="阅读"><i class="Hui-iconfont">&#xe720;</i></a>
+                            <a style="text-decoration:none" class="down" name="@item.BookUid" data-text="@item.Title" href="javascript:void(0)" title="下载"><i class="Hui-iconfont">&#xe641;</i></a>
                         </td>
                     </tr>
                 }
@@ -105,7 +157,8 @@
 <script src="~/Scripts/ajaxfileupload.js"></script>
 <!--请在下方写此页面业务相关的脚本-->
 <script type="text/javascript">
-        var user = "@(Session["uid"] == null ? "" : "1")";
+    var user = "@(Session["uid"] == null ? "" : "1")";
+    var domain = "@ConfigurationManager.AppSettings["Domain"]";
         function Dowm(BookUid, Title) {
             if (user == "") {
                 alert("请先登录");
@@ -117,6 +170,28 @@
         function Submit() {
             $("#searchForm").submit();
         }
+        $(document).ready(function () {
+            $(".look").click(function () {
+                var id = this.getAttribute('name');
+                if (user == "") {
+                    alert("亲～～请先登录哦");
+                } else {
+                    window.location.href = "/Article/Read/" + id;
+                }
+
+            })
+            $(".down").click(function () {
+                var id = this.getAttribute('name');
+                var title = this.getAttribute('data-text');
+                if (user == "") {
+                    alert("亲～～请先登录哦");
+                } else {
+                    $(this).attr("href", "/Article/DownLoadImages/" + id + "?title=" + title);
+                   // window.location.href = "/Article/DownLoadImages/" + id + "?title=" + title;
+                }
+
+            })
+        })
         /*古籍-阅读*/
         function article_show(title, url, w, h) {
             var index = layer.open({

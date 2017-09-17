@@ -1,12 +1,13 @@
 ﻿using Microsoft.VisualBasic;
 using QX_Frame.App.Web;
-using QX_Frame.Bantina;
-using QX_Frame.Bantina.Extends;
 using QX_Frame.Data.DTO;
 using QX_Frame.Data.Entities;
 using QX_Frame.Data.Options;
 using QX_Frame.Data.QueryObject;
 using QX_Frame.Data.Service;
+using QX_Frame.Helper_DG;
+using QX_Frame.Helper_DG.Extends;
+using QX_Frame.Web.Filter;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -25,7 +26,7 @@ namespace QX_Frame.Web.Controllers
     public class ArticleController : WebControllerBase
     {
 
-        private readonly int pageSize = 2;
+        private readonly int pageSize = 10;
         private readonly string domain = ConfigurationManager.AppSettings["Domain"];
         public ActionResult List(int pageIndex = 1)
         {

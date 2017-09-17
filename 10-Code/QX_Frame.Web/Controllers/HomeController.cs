@@ -12,7 +12,7 @@ namespace QX_Frame.Web.Controllers
       //  [AuthenCheck]
         public ActionResult Index()
         {
-            return RedirectToAction("List","Article");
+            return View();
         }
 
         public ActionResult About()

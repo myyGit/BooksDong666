@@ -1,5 +1,5 @@
 ﻿@{
-    Layout = "";
+    Layout = "~/Views/Shared/site.cshtml";
     ViewBag.Title = "Read";
 }
 <link rel="stylesheet" type="text/css" href="~/H-ui/h-ui/css/H-ui.min.css" />
@@ -18,11 +18,13 @@
 </style>
 
 @using QX_Frame.Data.DTO;
+@using System.Configuration;
 @{
     BookViewModel bookViewModel = Model as BookViewModel;
     string[] imgUris = bookViewModel.ImageUris.Split(',');
-}
-<div class="cl pd-20" style=" background-color:#5bacb6">
+    var domain = ConfigurationManager.AppSettings["Domain"]
+;}
+<div class="cl pd-20" style=" background-color:#5bacb6;margin-top:20px;text-align: center;padding: 8px;">
     <dl style="margin-left:80px; color:#fff">
         <dt>
             <span class="f-18">@bookViewModel.Title</span>
@@ -50,13 +52,13 @@
                     <a class="btn btn-primary radius" id="jump_behind" href="javascript:picJump(1);"><i class="Hui-iconfont">&#xe63d;</i></a>
                 </td>
                 <td><input id="bookPageIndex" type="text" name="bookPageIndex" value="1">/ 共 @imgUris.Count()张 <a class="btn btn-primary radius" id="jumpToPage" href="javascript:picJumpTo();"><i class="Hui-iconfont">&#xe603;</i>跳转到</a></td>
+                <td><a class="btn btn-primary radius" href="/Article/DownLoadImages/@bookViewModel.BookUid?title=@bookViewModel.Title"><i class="Hui-iconfont">&#xe641;</i>下载</a></td>
             </tr>
         </tbody>
     </table>
-    <div align="center"><img id='Imgbox' src='@imgUris.FirstOrDefault()' style="position:relative; zoom:100%;  cursor:move;" /></div>
+    <div align="center"><img id='Imgbox' src='@(domain+imgUris.FirstOrDefault())' style="position:relative; zoom:100%;  cursor:move;" /></div>
 </div>
 
-<script src="~/Scripts/jQueryRotate.2.2.js"></script>
 <script type="text/javascript">
     var imgCount = @imgUris.Count();
     var size = 0;
@@ -73,7 +75,7 @@
         if (toIndex > imgCount - 1) {
             toIndex = imgCount - 1;
         }
-        $("#Imgbox").prop("src", array[toIndex]);
+        $("#Imgbox").prop("src", "@domain"+array[toIndex]);
         $("#bookPageIndex").val(toIndex+1);
     }
     function picJumpTo()
@@ -85,7 +87,7 @@
         if (pageIndex > imgCount - 1) {
             pageIndex = imgCount - 1;
         }
-        $("#Imgbox").attr("src", array[pageIndex]);
+        $("#Imgbox").attr("src", "@domain"+array[pageIndex]);
         $("#bookPageIndex").val(pageIndex+1);
     }
 
@@ -103,11 +105,12 @@
             img.width(oWidth + size);
             img.height(oHeight + size / oWidth * oHeight);
         }
-        
+
     }
 
     function rotateLeftOrRight(rotateValue) {
         value = value + rotateValue;
+        console.log(value);
         $("#Imgbox").rotate({ animateTo: value });
     }
 
